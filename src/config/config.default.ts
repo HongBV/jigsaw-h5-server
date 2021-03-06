@@ -34,7 +34,7 @@ export default (appInfo: EggAppInfo): any => {
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: '12345678',
+    password: 'Hrq123456.',
     database: 'jigsaw',
     synchronize: true,
     logging: false,
