@@ -21,6 +21,12 @@ export default (appInfo: EggAppInfo): any => {
     csrf: {
       enable: false,
     },
+    domainWhiteList: ['*'],
+  };
+
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
 
   config.orm = {
