@@ -1,10 +1,13 @@
-import { Controller, Get, Provide } from '@midwayjs/decorator';
+import { Inject, Controller, Get, Provide } from '@midwayjs/decorator';
+import { Context } from 'egg';
 
 @Provide()
 @Controller('/')
 export class HomeController {
+  @Inject()
+  ctx: Context;
   @Get('/')
   async home(): Promise<any> {
-    return 'Hello Jigsaw H5!';
+    await this.ctx.render('index');
   }
 }

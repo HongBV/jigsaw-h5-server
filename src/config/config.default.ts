@@ -1,4 +1,6 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import * as path from 'path';
+import * as fs from 'fs';
 
 export type DefaultConfig = PowerPartial<EggAppConfig>;
 
@@ -11,10 +13,30 @@ export default (appInfo: EggAppInfo): any => {
   // add your config here
   config.middleware = [];
 
-  config.midwayFeature = {
-    // true 代表使用 midway logger
-    // false 或者为空代表使用 egg-logger
-    replaceEggLogger: true,
+  // 靜態目錄及緩存設置
+  config.static = {
+    prefix: '/',
+    dir: path.join(appInfo.baseDir, 'app/public'),
+    dynamic: true,
+    preload: false,
+    maxAge: 0,
+    buffer: false,
+  };
+
+  // 修改默认的 favicon.ico
+  config.siteFile = {
+    '/favicon.ico': fs.readFileSync(
+      path.join(appInfo.baseDir, 'app/public/favicon.ico')
+    ),
+  };
+
+  config.view = {
+    root: [path.join(appInfo.baseDir, 'app/view')].join(','),
+    defaultViewEngine: 'nunjucks',
+    defaultExtension: '.html',
+    mapping: {
+      '.html': 'nunjucks',
+    },
   };
 
   config.security = {
@@ -34,10 +56,16 @@ export default (appInfo: EggAppInfo): any => {
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: 'Hrq123456.',
+    password: '12345678',
     database: 'jigsaw',
     synchronize: true,
     logging: false,
+  };
+
+  config.midwayFeature = {
+    // true 代表使用 midway logger
+    // false 或者为空代表使用 egg-logger
+    replaceEggLogger: true,
   };
 
   return config;
