@@ -1,6 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import * as path from 'path';
-import * as fs from 'fs';
 
 export type DefaultConfig = PowerPartial<EggAppConfig>;
 
@@ -21,13 +20,6 @@ export default (appInfo: EggAppInfo): any => {
     preload: false,
     maxAge: 0,
     buffer: false,
-  };
-
-  // 修改默认的 favicon.ico
-  config.siteFile = {
-    '/favicon.ico': fs.readFileSync(
-      path.join(appInfo.baseDir, 'app/public/favicon.ico')
-    ),
   };
 
   config.view = {

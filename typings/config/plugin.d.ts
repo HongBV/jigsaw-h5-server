@@ -9,10 +9,12 @@ import 'egg-multipart';
 import 'egg-security';
 import 'egg-logrotator';
 import 'egg-schedule';
+import 'egg-static';
 import 'egg-jsonp';
 import 'egg-view';
 import 'midway-schedule';
 import 'egg-cors';
+import 'egg-view-nunjucks';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -30,5 +32,6 @@ declare module 'egg' {
     view?: EggPluginItem;
     schedulePlus?: EggPluginItem;
     cors?: EggPluginItem;
+    nunjucks?: EggPluginItem;
   }
 }
