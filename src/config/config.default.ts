@@ -20,6 +20,7 @@ export default (appInfo: EggAppInfo): any => {
     preload: false,
     maxAge: 0,
     buffer: false,
+    gzip: true
   };
 
   config.view = {
